@@ -49,7 +49,7 @@ namespace Serilog.Sinks.AzureTableStorage
         {
             Timestamp = log.Timestamp.ToUniversalTime().DateTime;
             PartitionKey = string.Format("0{0}", partitionKey);
-            RowKey = GetValidRowKey(string.Format("{0}|{1}", log.Level, log.MessageTemplate.Text));
+            RowKey = GetValidRowKey(Guid.NewGuid().ToString());
             MessageTemplate = log.MessageTemplate.Text;
             Level = log.Level.ToString();
             Exception = log.Exception != null ? log.Exception.ToString() : null;
